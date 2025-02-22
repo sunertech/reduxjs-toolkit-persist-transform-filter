@@ -1,22 +1,22 @@
-# redux-persist-transform-filter
+# reduxjs-toolkit-persist-transform-filter
 
-[![npm](https://img.shields.io/npm/v/redux-persist-transform-filter.svg?maxAge=2592000&style=flat-square)](https://www.npmjs.com/package/redux-persist-transform-filter)
-[![Build Status](https://travis-ci.org/edy/redux-persist-transform-filter.svg?branch=master)](https://travis-ci.org/edy/redux-persist-transform-filter)
+[![npm](https://img.shields.io/npm/v/reduxjs-toolkit-persist-transform-filter.svg?maxAge=2592000&style=flat-square)](https://www.npmjs.com/package/reduxjs-toolkit-persist-transform-filter)
+[![Build Status](https://travis-ci.org/sunertech/reduxjs-toolkit-persist-transform-filter.svg?branch=master)](https://travis-ci.org/sunertech/reduxjs-toolkit-persist-transform-filter)
 
-Filter transformator for redux-persist
+Filter transformator for reduxjs-toolkit-persist
 
 ## Installation
 ```
-  npm install redux-persist-transform-filter
+  npm install reduxjs-toolkit-persist-transform-filter
 ```
 
 ## Usage
 
 ```js
-import { createFilter, createBlacklistFilter } from 'redux-persist-transform-filter';
+import { createFilter, createBlacklistFilter } from 'reduxjs-toolkit-persist-transform-filter';
 
 // this works too:
-import createFilter, { createBlacklistFilter } from 'redux-persist-transform-filter';
+import createFilter, { createBlacklistFilter } from 'reduxjs-toolkit-persist-transform-filter';
 
 // you want to store only a subset of your state of reducer one
 const saveSubsetFilter = createFilter(
@@ -60,21 +60,40 @@ const normalPathFilter = persistFilter(
 	'whitelist'
 )
 
-persistStore(store, {
-  transforms: [
-    saveSubsetFilter,
-    saveSubsetBlacklistFilter,
-    loadSubsetFilter,
-    saveAndloadSubsetFilter,
-  ]
-});
+const persistConfig = ;
+
+const persistedReducer = persistReducer(
+  {
+    key: "suffix",
+    ... // another config options
+    transforms: [
+      saveSubsetFilter,
+      saveSubsetBlacklistFilter,
+      loadSubsetFilter,
+      saveAndloadSubsetFilter,
+    ],
+  },
+  rootReducer, // your reducer object root
+);
 ```
 
-## Example project
+## Test
 
 ```sh
-git clone https://github.com/edy/redux-persist-transform-filter-example.git
-cd redux-persist-transform-filter-example
+git clone https://github.com/sunertech/reduxjs-toolkit-persist-transform-filter.git
+cd reduxjs-toolkit-persist-transform-filter
 npm install
-npm start
+npm test
+```
+
+## Build (generate .js and .d.ts)
+
+```sh
+npm build
+```
+
+## Release (test, build and publish)
+
+```sh
+npm release
 ```
